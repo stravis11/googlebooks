@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const PORT = 5000;
+const mongoose = require("mongoose");
 
 const app = express();
 
@@ -14,4 +15,10 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client/src/index.html"));
 });
 
+// Connect to the Mongo DB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1/googlebooks", {
+  useNewUrlParser: true
+});
+
+// Starting API server
 app.listen(PORT, () => console.log("Listening on port %s", PORT));
