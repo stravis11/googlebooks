@@ -5,14 +5,15 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "client/build")));
+// app.use(express.static(path.join(__dirname, "client/build")));
 
+app.use(express.static(path.join(__dirname, "client")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // This loads the React index page
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/src/index.html"));
+  res.sendFile(path.join(__dirname, "client/public/index.html"));
 });
 
 // Connect to the Mongo DB
